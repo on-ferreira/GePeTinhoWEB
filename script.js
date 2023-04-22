@@ -114,10 +114,10 @@ window.onload = function() {
   });
     
 // Add event listener to input field to send message when Enter key is pressed
-document.querySelector(".chat-input input").addEventListener("keydown", (event) => {
+chatInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     event.preventDefault();
-    document.querySelector(".chat-input button").click();
+    chatSendButton.click();
   }
 });
 }
