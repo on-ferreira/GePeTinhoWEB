@@ -104,12 +104,12 @@ body {
   }
   
   .chat-messages {
-  height: 400px;
+  height: 90vh;
   overflow-y: scroll;
   }
   
   .user-message {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   }
   
   .user-message p {
@@ -122,7 +122,7 @@ body {
   }
   
   .system-message {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   }
   
   .system-message img {
@@ -149,7 +149,7 @@ body {
     left: 300px;
     right: 10px;
     padding: 10px;
-    background-color: #f2f2f2;
+    background-color: var(--light-secondary-color);
 
   }
   
@@ -158,45 +158,18 @@ body {
     margin-right: 10px;
     padding: 10px;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px 0 0 20px;
+
   }
   
   .send-button {
-    background-color: #4CAF50;
-    color: white;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
     border: none;
     border-radius: 5px;
     padding: 10px;
     cursor: pointer;
   }
-  
-  /*
-  .chat-input {
-  margin-top: 20px;
-  margin-bottom: 0px;
-  }
-  
-  .chat-input input[type="text"] {
-  width: calc(100% - 80px);
-  padding: 10px;
-  border: none;
-  border-radius: 20px 0 0 20px;
-  }
-  
-  .chat-input button {
-  width: 80px;
-  padding: 10px;
-  border: none;
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  border-radius: 0 20px 20px 0;
-  cursor: pointer;
-  }
-  
-  .chat-input button:hover {
-  background-color: #444;
-  } 
-  */
   
   /* Estilos para o pop-up de configurações */
   
