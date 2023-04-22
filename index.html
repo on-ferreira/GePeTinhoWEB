@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Chat App</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>GePeTinho WEB</h2>
+    <ul class="chat-list">
+      <li class="active"><a href="#">Chat 1</a></li>
+      <li><a href="#">Chat 2</a></li>
+      <li><a href="#">Chat 3</a></li>
+    </ul>
+    <div class="settings">
+      <hr class="my-line">
+      <a href="#" class="clear">Limpar conversas</a>
+      <a href="#" class="config">Configurações</a>
+      <a href="logout.html" class="help">Logout</a>
+    </div>
+  </div>
+  <div class="chat">
+    <div class="chat-header">
+      <h3>Chat 1</h3>
+    </div>
+    <div class="chat-messages">
+      <div class="system-message">
+        <p>Seja bem vindo!</p>
+        <p>Digite alguma coisa abaixo</p>
+      </div>
+    </div>
+    <div class="chat-container">
+      <input type="text" class="chat-input">
+      <button class="send-button">Send</button>
+    </div>
+  </div>
+  <div id="settings-popup">
+    <form>
+      <label for="theme-light">Light Theme</label>
+      <input type="radio" name="theme" id="theme-light" value="light">
+
+      <label for="theme-dark">Dark Theme</label>
+      <input type="radio" name="theme" id="theme-dark" value="dark">
+
+      <button type="submit">Apply</button>
+    </form>
+  </div>
+</body>
+</html>
