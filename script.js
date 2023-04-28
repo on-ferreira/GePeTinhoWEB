@@ -11,9 +11,9 @@ window.onload = function() {
   const clearButton = document.querySelector('.settings .clear');
   const configPopup = document.getElementById('settings-popup');
 
+
   // Adiciona uma mensagem de chat à seção de mensagens
   function addChatMessage(message, sender) {
-    const chatMessages = document.querySelector('.chat-messages');
     const messageContainer = document.createElement('div');
     messageContainer.classList.add('message-container');
     if (sender === 'user') {
@@ -34,7 +34,15 @@ window.onload = function() {
       }
     }
     chatMessages.appendChild(messageContainer);
+    scrollChatMessages()
   }
+
+  // function to scroll down the chat container
+function scrollChatMessages() {
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+
 
   // Adiciona um ouvinte de eventos de clique a cada item da lista de bate-papo
   chatList.querySelectorAll('li').forEach((chatItem, index) => {
@@ -108,7 +116,6 @@ window.onload = function() {
         addChatMessage(blob, 'system');
         addChatMessage('Gepetinho: Não sou capaz de entender o que você disse, que tal isso no lugar? '+'Meow '.repeat(15), 'system');
       });
-      
     // Limpa o campo de entrada de texto
     chatInput.value = '';
   });
@@ -121,4 +128,3 @@ chatInput.addEventListener("keydown", (event) => {
   }
 });
 }
-
