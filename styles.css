@@ -1,10 +1,13 @@
 /* Definindo estilos gerais */
+html{
+  overflow: hidden;
+}
 
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   }
 
   :root {
@@ -104,8 +107,20 @@ body {
   }
   
   .chat-messages {
-  height: 90vh;
-  overflow-y: scroll;
+  height: 80vh;
+  overflow-y: auto;
+  }
+
+  .chat-messages::-webkit-scrollbar {
+    width: 8px; /* width of the scrollbar */
+  }
+  
+  .chat-messages::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* color of the scrollbar thumb */
+  }
+
+  .chat-messages::-webkit-scrollbar-track {
+    background-color: transparent; /* color of the scrollbar track */
   }
   
   .user-message {
@@ -137,6 +152,7 @@ body {
   border-radius: 10px;
   padding: 10px;
   display: inline-block;
+  max-width: 80%;
   }
   
   .chat-container {
@@ -250,14 +266,6 @@ body {
 }
 
 /* Definindo a borda para separar as partes */
-
-.sidebar {
-  border-right: 1px solid var(--secondary-color);
-  }
-  
-  .chat {
-  border-left: 1px solid var(--secondary-color);
-  }
 
   .my-line {
     border: none;
