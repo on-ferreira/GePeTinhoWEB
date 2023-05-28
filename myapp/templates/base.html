@@ -1,0 +1,49 @@
+
+
+<!-- base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GePeTinho</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>GePeTinho WEB</h2>
+    <form method="POST" action="{% url 'myapp:create_chat' %}">
+      {% csrf_token %}
+    <button type="submit" class="new-chat-btn">+New Chat</button>
+    </form>
+    <ul class="chat-list">
+      {% for chat in chats %}
+      <li><a href = '/chat/{{chat.id}}'>Chat {{chat.id}}</a></li>
+      {% endfor %}
+    </ul>
+    <div class="settings">
+      <hr class="my-line">
+      <a href="#" class="clear">Limpar conversas</a>
+      <a href="#" class="config">Configurações</a>
+      <a href="logout.html" class="help">Logout</a>
+    </div>
+  </div>
+
+    <div class="chat-detail-container">
+    {% block content %}
+    {% endblock %}
+  </div>
+
+  <div id="settings-popup">
+    <form>
+      <label for="theme-light">Light Theme</label>
+      <input type="radio" name="theme" id="theme-light" value="light">
+
+      <label for="theme-dark">Dark Theme</label>
+      <input type="radio" name="theme" id="theme-dark" value="dark">
+
+      <button type="submit">Apply</button>
+    </form>
+  </div>
+</body>
+</html>

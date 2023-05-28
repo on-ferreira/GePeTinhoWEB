@@ -1,0 +1,33 @@
+<!-- chat_detail.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="chat">
+  <div class="chat-header">
+    <h3>Chat {{ chat.pk }}</h3>
+  </div>
+  <div class="chat-messages">
+      {% for message in messages %}
+      {% if message.sender == 'user' %}
+      <div class="message-container user-message"><p>Usuário: {{ message.content }}</p></div>
+      {% else %}
+          {% if message.typeofMessage == 'img_url' %}
+          <div class="message-container system-message"><img src="{{ message.content }}"></div>
+          {% else %}
+          <div class="message-container system-message"><p>GePeTinho: {{ message.content }}</p></div>
+          {% endif %}
+      {% endif %}
+      {% endfor %}
+  </div>
+  <div class="chat-container">
+    <form method="POST" action="{% url 'myapp:create_msg' %}">
+      {% csrf_token %}
+    <input type="text" name="chat_input" id="chat_input" class="chat_input"  placeholder="Digite sua mensagem aqui..." required>
+    <input type="hidden" name="chat_id" value="{{ chat.pk }}">
+    <button type="submit" class="send-button">Send</button>
+    </form>
+
+  </div>
+</div>
+{% endblock %}
