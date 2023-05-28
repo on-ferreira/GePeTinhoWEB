@@ -1,0 +1,278 @@
+/* Definindo estilos gerais */
+html{
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  }
+
+  :root {
+    --primary-color: #61dafb;
+    --secondary-color: #282c34;
+    --border-color: #686969;
+    --light-primary-color: #92e5fc;
+    --light-secondary-color: #575b64;
+    --darker-primary-color: #3691aa;
+  }
+
+  /* Adicionando borda entre as partes */
+  .section {
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para a barra lateral */
+  
+  .sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  padding: 20px;
+  }
+  
+  .sidebar h2 {
+  margin-top: 0;
+  font-size: 24px;
+  }
+  
+  .chat-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  }
+  
+  .chat-list li {
+  margin: 0;
+  padding: 10px 0;
+  }
+
+  .chat-list li a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .chat-list li.active a {
+  font-weight: bold;
+  color: inherit;
+  text-decoration: none;
+  }
+  
+  .settings {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;  
+  }
+  
+  .settings a {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+  text-decoration: none;
+  }
+  
+  .settings a:hover {
+  text-decoration: underline;
+  }
+  
+  /* Estilos para o chat */
+  
+  .chat {
+    margin-left: calc(250px + 30px);
+    padding: 20px;
+    background-color: var(--light-secondary-color);
+    height: 100vh;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .chat-header {
+  margin-bottom: 20px;
+  }
+  
+  .chat-header h3 {
+  margin-top: 0;
+  font-size: 24px;
+  color: var(--primary-color)
+  }
+  
+  .chat-messages {
+  height: 80vh;
+  overflow-y: auto;
+  }
+
+  .chat-messages::-webkit-scrollbar {
+    width: 8px; /* width of the scrollbar */
+  }
+  
+  .chat-messages::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2); /* color of the scrollbar thumb */
+  }
+
+  .chat-messages::-webkit-scrollbar-track {
+    background-color: transparent; /* color of the scrollbar track */
+  }
+  
+  .user-message {
+  margin-bottom: 5px;
+  }
+  
+  .user-message p {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border-radius: 10px;
+  padding: 10px;
+  display: inline-block;
+  max-width: 80%;
+  }
+  
+  .system-message {
+  margin-bottom: 5px;
+  }
+  
+  .system-message img {
+  display: block;
+  margin-bottom: 10px;
+  max-width: 100%;
+  }
+  
+  .system-message p {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border-radius: 10px;
+  padding: 10px;
+  display: inline-block;
+  max-width: 80%;
+  }
+  
+  .chat-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0px;
+    left: 300px;
+    right: 10px;
+    padding: 10px;
+    background-color: var(--light-secondary-color);
+
+  }
+  
+  .chat-input {
+    flex: 1;
+    margin-right: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px 0 0 20px;
+
+  }
+  
+  .send-button {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  /* Estilos para o pop-up de configurações */
+  
+  #settings-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  background-color: var(--primary-color);
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  color: var(--primary-color);
+  z-index: 999;
+  }
+  
+  #settings-popup label {
+  display: block;
+  margin-bottom: 10px;
+  }
+  
+  #settings-popup button {
+  display: block;
+  margin-top: 20px;
+  padding: 10px;
+  border: none;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border-radius: 20px;
+  cursor: pointer;
+  }
+  
+  #settings-popup button:hover {
+  background-color: #444;
+  }
+  
+  /*.deve-se definir a largura e a altura máximas para a imagem, para garantir que ela não fique muito grande e distorça a aparência do chat. Podemos fazer isso usando o seletor .system-message img e adicionando as propriedades max-width e max-height:
+*/
+.system-message img {
+  max-width: 100%;
+  max-height: 200px;
+}
+
+#settings-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+#settings-popup form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 200px;
+  background-color: var(--secondary-color);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+#settings-popup label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+#settings-popup button[type="submit"] {
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+/* Definindo a borda para separar as partes */
+
+  .my-line {
+    border: none;
+    height: 1px;
+    width: 20%;
+    background-color: var(--light-secondary-color);
+    margin: 10px;
+    text-align: left;
+  }
+  
