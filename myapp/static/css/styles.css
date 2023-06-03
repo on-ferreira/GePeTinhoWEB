@@ -73,6 +73,7 @@ body {
     color: var(--primary-color);
     border: none;
     border-radius: 5px;
+    font-size: 16px;
     padding: 10px;
     cursor: pointer;
     text-decoration: none !important;
@@ -92,10 +93,27 @@ body {
     width: 100%;
     padding: 10px;  
   }
-  
+
+  .settings button{
+      display: block;
+      color: var(--primary-color);
+      background: var(--secondary-color);
+      text-decoration: none;
+      border: none;
+      font-size: 16px;
+    border-radius: 5px;
+    padding: 6px;
+    cursor: pointer;
+    text-decoration: none !important;
+    outline: none !important;
+    display: inline-block; /* Added display property */
+  }
+
   .settings a {
   display: block;
+  margin-top:5px;
   margin-bottom: 10px;
+  margin-left: 5px;
   color: var(--primary-color);
   text-decoration: none;
   }

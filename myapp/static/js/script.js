@@ -18,11 +18,6 @@ window.onload = function() {
     document.getElementById('settings-popup').style.display = 'block';
   });
 
-  // Adiciona um ouvinte de eventos de clique ao botão Limpar conversas
-  clearButton.addEventListener('click', function(event) {
-    // Limpa todas as mensagens do bate-papo atualmente exibido
-    chatMessages.innerHTML = '';
-  });
 
   document.querySelector("#settings-popup button[type='submit']").addEventListener("click", (event) => {
     event.preventDefault(); // Evita que o formulário seja enviado

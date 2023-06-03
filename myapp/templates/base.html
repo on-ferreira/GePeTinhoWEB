@@ -18,12 +18,22 @@
     </form>
     <ul class="chat-list">
       {% for chat in chats %}
+      <!-- Colocar um IF de user logado = user do chat-->
       <li><a href = '/chat/{{chat.id}}'>Chat {{chat.id}}</a></li>
       {% endfor %}
     </ul>
     <div class="settings">
       <hr class="my-line">
-      <a href="#" class="clear">Limpar conversas</a>
+        <form method="POST" action="{% url 'myapp:clear_chat' %}">
+          {% csrf_token %}
+          <input type="hidden" name="chat_id" value="{{ chat.pk }}">
+          <button type="submit" class="clear">Limpar conversas</button>
+        </form>
+      <form method="POST" action="{% url 'myapp:delete_chat' %}">
+          {% csrf_token %}
+          <input type="hidden" name="chat_id" value="{{ chat.pk }}">
+          <button type="submit" class="clear">Deletar chat</button>
+        </form>
       <a href="#" class="config">Configurações</a>
       <a href="logout.html" class="help">Logout</a>
     </div>

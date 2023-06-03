@@ -55,3 +55,28 @@ def create_msg(request):
     else:
         return render(request, 'create_msg.html')
 
+
+def clear_chat(request):
+    if request.method == 'POST':
+        chat_id = request.POST.get('chat_id')
+        # Retrieve the chat object based on chat_id
+        chat = Chat.objects.get(pk=chat_id)
+        # Delete the messages with the matching chat_id
+        Message.objects.filter(chat_id=chat.pk).delete()
+
+        return redirect(reverse('myapp:chat_view', kwargs={'chat_id': chat.pk}))
+    else:
+        return render(request, 'create_chat.html')
+
+
+def delete_chat(request):
+    if request.method == 'POST':
+        chat_id = request.POST.get('chat_id')
+        # Retrieve the chat object based on chat_id
+        chat = Chat.objects.get(pk=chat_id)
+        # Delete the messages with the matching chat_id
+        chat.delete()
+
+        return redirect(reverse('myapp:index'))
+    else:
+        return render(request, 'create_chat.html')
