@@ -23,7 +23,7 @@ from django.views.generic import TemplateView
 
 
 urlpatterns = [
-    path('', include('myapp.urls')),
     path('admin/', admin.site.urls),
-
+    path('', include('myapp.urls')),
+    path('social-auth/', include('social_django.urls', namespace='social-auth')),
 ]

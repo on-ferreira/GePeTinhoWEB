@@ -1,16 +1,45 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from .models import Chat, Message
 from django.urls import reverse
 import requests
 from urllib.parse import urljoin
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import logout as auth_logout
 
 
+def login(request):
+    return render(request, 'login.html')
+
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse('myapp:login'))  # Redirect to the login page after successful sign-up
+    else:
+        form = UserCreationForm()
+    return render(request, 'signup.html', {'form': form})
+
+
+@login_required
+def logout(request):
+    if request.method == 'POST':
+        auth_logout(request)
+        return redirect(reverse('myapp:login'))
+    else:
+        return redirect(reverse('myapp:index'))
+
+@login_required
 def index(request):
+    user = request.user  # Retrieve the logged-in user
     chats = Chat.objects.all()
-    context = {'chats': chats}
+    context = {'chats': chats, 'user': user}  # Add 'user' to the context
     return render(request, 'index.html', context)
 
 
+@login_required
 def chat_view(request, chat_id):
     chats = Chat.objects.all()
     chat = Chat.objects.get(pk=chat_id)
@@ -19,14 +48,17 @@ def chat_view(request, chat_id):
     return render(request, 'chat_detail.html', context)
 
 
+@login_required
 def create_chat(request):
     if request.method == 'POST':
-        chat = Chat.objects.create()
+        user = request.user  # Retrieve the logged-in user
+        chat = Chat.objects.create(user = user)
         return redirect(reverse('myapp:chat_view', kwargs={'chat_id': chat.pk}))
     else:
         return render(request, 'create_chat.html')
 
 
+@login_required
 def create_msg(request):
     if request.method == 'POST':
         chat_id = request.POST.get('chat_id')
@@ -56,6 +88,7 @@ def create_msg(request):
         return render(request, 'create_msg.html')
 
 
+@login_required
 def clear_chat(request):
     if request.method == 'POST':
         chat_id = request.POST.get('chat_id')
@@ -69,6 +102,7 @@ def clear_chat(request):
         return render(request, 'create_chat.html')
 
 
+@login_required
 def delete_chat(request):
     if request.method == 'POST':
         chat_id = request.POST.get('chat_id')

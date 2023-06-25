@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Chat(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
-    #user = pegar current user
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ('created_at', )

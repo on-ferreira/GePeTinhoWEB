@@ -44,6 +44,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'channels',
     'myapp',
+    'social_django',
+
+    #Sign up allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    #Google part
+    'allauth.socialaccount.providers.google',
+
 ]
 
 MIDDLEWARE = [
@@ -69,6 +79,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -133,3 +145,42 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+LOGIN_URL = 'login/'
+LOGIN_REDIRECT_URL = '/index/'
+LOGOUT_URL = 'logout/'
+LOGOUT_REDIRECT_URL = 'login/'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '3576948744-acq9nkjj945cl2km4mu3cshqkrjb5bre.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': [
+#             'profile',
+#             'email',
+#         ],
+#         'AUTH_PARAMS': {
+#             'access_type': 'online',
+#         }
+#     }
+# }
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': SOCIAL_AUTH_GOOGLE_OAUTH2_KEY,
+            'secret': SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET,
+            'key': ''
+        }
+    }
+}
+
+ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
+
